@@ -2,23 +2,10 @@
 #include <stdbool.h>
 #include <string.h>
 #include "functions.h"
+#include "graph.h"
 
 int main(){
-int adjacentMatrix [][5] = {
-        {0, 4, 0, 0, 0 },
-        {0, 0, 3, 5, 0 },
-        {0, 0, 0, 0, 3 },
-        {0, 0, 2, 0, 4 },
-        {0, 0, 0, 0, 0 },
-    };
-
-  char names[5][25] = {
-      {"A"},
-      {"B"},
-      {"C"},
-      {"D"},
-      {"E"},
-  };
+    char startinglocation, destination;
   
       do
     {
@@ -26,17 +13,20 @@ int adjacentMatrix [][5] = {
        menuSelection = selectMenu();
        switch(menuSelection){
         case 1: 
-            // AssignNodeName()
+            initializeGraph();
             break;
         case 2:
-            // EnterStartingLocation()
+            startinglocation = EnterStartingLocation();
             break;
         case 3:
-            // EnterDestination()
+            destination = EnterDestination();
             break;
         case 4: 
             // EvaluateShortDistance();
             // DisplayShortDistance();
+            break;
+        case 5:
+            displayGraph();
             break;
         default:
             break;
