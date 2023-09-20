@@ -60,12 +60,12 @@ int* EvaluateShortDistance(int graph[][VERTEX], Routes *route){
     static int shortestDistances[VERTEX];
     bool shortestPathSet[VERTEX], isNotInfinite, isCurrDistShorter;
 
-    for (int i = 0; i < VERTEX; i++) { //initialize shortest distance and shortest paths / TBD - function
+    for (int i = 0; i < VERTEX; i++) {
         shortestDistances[i] = INT_MAX;
         shortestPathSet[i] = false;
     }
 
-    shortestDistances[startinglocation] = 0; // if cebu == cebu = 0 distance
+    shortestDistances[startinglocation] = 0;
 
     for (int count = 0; count < VERTEX - 1; count++) {
         int minDistVertex = FindMinDistanceVertex(shortestDistances, shortestPathSet);
