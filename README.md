@@ -18,3 +18,18 @@ Make Dummy Matrix
 Due Dates:
 Proposed Deadline / Mock Code Review - Sept. 20, 2023
 Final Deadline - Sept 21, 2023
+
+
+Structure:
+Algorithm: Base on Djikstra (Priority Queue)
+
+- Ask User to Input Names for Col and Rows (Nodes)
+- Distance are static and defined
+- Functions that ask for EnterStarting and EnterDistance
+- Functions to EvaluateSD and DisplaySD
+
+Expected Output:
+Starting Point     Destination     Shortest Distance from Starting Location
+A                       C                           5
+
+

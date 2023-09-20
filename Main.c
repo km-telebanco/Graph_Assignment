@@ -4,7 +4,22 @@
 #include "functions.h"
 
 int main(){
+int adjacentMatrix [][5] = {
+        {0, 4, 0, 0, 0 },
+        {0, 0, 3, 5, 0 },
+        {0, 0, 0, 0, 3 },
+        {0, 0, 2, 0, 4 },
+        {0, 0, 0, 0, 0 },
+    };
 
+  char names[5][25] = {
+      {"A"},
+      {"B"},
+      {"C"},
+      {"D"},
+      {"E"},
+  };
+  
       do
     {
        DisplayMenu();
