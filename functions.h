@@ -1,5 +1,5 @@
 #include <stdio.h>
-#define EXITCODE 5
+#define EXITCODE 6
 
 int AskNodeToInsert();
 int menuSelection;

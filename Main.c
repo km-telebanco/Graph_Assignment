@@ -7,7 +7,7 @@
 int main(){
     char startinglocation, destination;
   
-      do
+    do
     {
        DisplayMenu();
        menuSelection = selectMenu();
@@ -22,8 +22,10 @@ int main(){
             destination = EnterDestination();
             break;
         case 4: 
-            // EvaluateShortDistance();
-            // DisplayShortDistance();
+            int start = 0;
+            int dest = 4;
+            int *shortestDestances = EvaluateShortDistance(graph, start, dest);
+            DisplayShortDistance(shortestDestances, start, dest);
             break;
         case 5:
             displayGraph();

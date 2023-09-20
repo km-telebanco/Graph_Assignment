@@ -1,12 +1,13 @@
 #include <stdio.h>
 #include <limits.h>
+#include <stdbool.h>
 #define VERTEX 5 
 
 int graph[VERTEX][VERTEX];
 char nodeNames[VERTEX][20];
 
 void initializeGraph() {
-     for (int i = 0; i < VERTEX; i++) {
+    for (int i = 0; i < VERTEX; i++) {
         printf("Enter name for Node %c: ", i + 'A');
         scanf("%s", nodeNames[i]);
     }
@@ -70,4 +71,56 @@ void displayGraph() {
 
         printf("\n");
     }
+}
+
+int FindMinDistanceVertex(int shortestDistances[], bool shortestPathSet[]){
+    int minDistance = INT_MAX;
+    int minVertex;
+
+    for (int vertex = 0; vertex < VERTEX; vertex++) {
+        if (!shortestPathSet[vertex] && shortestDistances[vertex] <= minDistance) {
+            minDistance = shortestDistances[vertex];
+            minVertex = vertex;
+        }
+    }
+
+    return minVertex;
+}
+
+int* EvaluateShortDistance(int graph[][VERTEX], int startinglocation, int destination){
+    static int shortestDistances[VERTEX];
+    bool shortestPathSet[VERTEX];
+
+    for (int i = 0; i < VERTEX; i++) {
+        shortestDistances[i] = INT_MAX;
+        shortestPathSet[i] = false;
+    }
+
+    shortestDistances[startinglocation] = 0;
+
+    for (int count = 0; count < VERTEX - 1; count++) {
+        int minDistanceVertex = FindMinDistanceVertex(shortestDistances, shortestPathSet);
+        shortestPathSet[minDistanceVertex] = true;
+
+        for (int v = 0; v < VERTEX; v++) {
+            if (
+                !shortestPathSet[v] &&
+                graph[minDistanceVertex][v] &&
+                shortestDistances[minDistanceVertex] != INT_MAX &&
+                shortestDistances[minDistanceVertex] + graph[minDistanceVertex][v] < shortestDistances[v]
+                ) 
+            {
+                shortestDistances[v] = shortestDistances[minDistanceVertex] + graph[minDistanceVertex][v];
+            }
+        }
+    }
+
+    return shortestDistances;
+}
+
+void DisplayShortDistance(int shortestDestances[], int startingLocation, int destination){
+    printf("##############################\n");
+    printf("Starting Location: %s \n", nodeNames[startingLocation]);
+    printf("Destination: %s \n", nodeNames[destination]);
+    printf("Shortest Distance: %d \n\n", shortestDestances[destination]);
 }
