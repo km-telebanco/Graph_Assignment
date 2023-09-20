@@ -1,14 +1,14 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <string.h>
-#include "functions.h" //non-related sa graph functions +cohesiveness
-#include "graph.h" //graph related functions
+#include "functions.h"
+#include "graph.h"
 
 int main(){
-    int *shortestDistances; // array
+    int *shortestDistances;
     Routes *route;
     route = (Routes *)malloc(sizeof(Routes));
-    
+
     do
     {
        DisplayMenu();
