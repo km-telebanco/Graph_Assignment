@@ -1,12 +1,11 @@
 #include <stdio.h>
 #define EXITCODE 6
+#define VERTEX 5
 
-int AskNodeToInsert();
 int menuSelection;
 
 void DisplayMenu()
 {
-
     printf("[1] Assign Names To Nodes\n");
     printf("[2] Starting Location\n");
     printf("[3] Destination\n");
@@ -15,7 +14,7 @@ void DisplayMenu()
     printf("[6] Exit\n");
 }
 
-int selectMenu()
+int SelectMenu()
 {
     int choice;
     printf("Choose Graph Selection: ");
@@ -23,18 +22,26 @@ int selectMenu()
     return choice;
 }
 
-char EnterStartingLocation(){
-    char startNode;
-    printf("Enter Starting Location: ");
-    scanf(" %c", &startNode);
-
-    return startNode;
+void DisplayCurrentLocations(char nodeNames[VERTEX][20])
+{
+    for(int i = 0; i < VERTEX; i++)
+    {
+        printf("[%d] %s \n", i + 1, nodeNames[i]);
+    }
 }
 
-char EnterDestination(){
-    char endNode;
-    printf("Enter Destination: ");
-    scanf(" %c", &endNode);
+int EnterStartingLocation(){
+    int start;
+    printf("Enter Starting Location: ");
+    scanf("%d", &start);
 
-    return endNode;
+    return start - 1;
+}
+
+int EnterDestination(){
+    int destination;
+    printf("Enter Destination: ");
+    scanf("%d", &destination);
+
+    return destination - 1;
 }

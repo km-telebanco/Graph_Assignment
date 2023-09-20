@@ -1,34 +1,36 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <string.h>
-#include "functions.h"
-#include "graph.h"
+#include "functions.h" //non-related sa graph functions +cohesiveness
+#include "graph.h" //graph related functions
 
 int main(){
-    char startinglocation, destination;
-  
+    int *shortestDistances; // array
+    Routes *route;
+    route = (Routes *)malloc(sizeof(Routes));
+    
     do
     {
        DisplayMenu();
-       menuSelection = selectMenu();
+       menuSelection = SelectMenu();
        switch(menuSelection){
         case 1: 
-            initializeGraph();
+            AssignNodeNames();
             break;
         case 2:
-            startinglocation = EnterStartingLocation();
+            DisplayCurrentLocations(nodeNames);
+            route->start = EnterStartingLocation();
             break;
         case 3:
-            destination = EnterDestination();
+            DisplayCurrentLocations(nodeNames);
+            route->destination = EnterDestination();
             break;
         case 4: 
-            int start = 0;
-            int dest = 4;
-            int *shortestDestances = EvaluateShortDistance(graph, start, dest);
-            DisplayShortDistance(shortestDestances, start, dest);
+            shortestDistances = EvaluateShortDistance(graph, route);
+            DisplayShortDistance(shortestDistances, route);
             break;
         case 5:
-            displayGraph();
+            DisplayGraph();
             break;
         default:
             break;

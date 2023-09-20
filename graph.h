@@ -4,17 +4,19 @@
 #include "graph_data.h"
 #define VERTEX 5 
 
-#define VERTEX 5 
-char nodeNames[VERTEX][20];
+typedef struct Routes {
+    int start;
+    int destination;
+} Routes;
 
-void initializeGraph() {
+void AssignNodeNames() {
     for (int i = 0; i < VERTEX; i++) {
         printf("Enter name for Node %c: ", i + 'A');
         scanf("%s", nodeNames[i]);
     }
 }
 
-void displayGraph() {
+void DisplayGraph() {
     printf("\nGraph (Adjacency Matrix):\n\n");
 
     printf("    ");
@@ -52,16 +54,18 @@ int FindMinDistanceVertex(int shortestDistances[], bool shortestPathSet[]){
     return minVertex;
 }
 
-int* EvaluateShortDistance(int graph[][VERTEX], int startinglocation, int destination){
+int* EvaluateShortDistance(int graph[][VERTEX], Routes *route){
+    int startinglocation = route->start;
+    
     static int shortestDistances[VERTEX];
     bool shortestPathSet[VERTEX];
 
-    for (int i = 0; i < VERTEX; i++) {
+    for (int i = 0; i < VERTEX; i++) { //initialize shortest distance and shortest paths
         shortestDistances[i] = INT_MAX;
         shortestPathSet[i] = false;
     }
 
-    shortestDistances[startinglocation] = 0;
+    shortestDistances[startinglocation] = 0; // if cebu == cebu = 0 distance
 
     for (int count = 0; count < VERTEX - 1; count++) {
         int minDistanceVertex = FindMinDistanceVertex(shortestDistances, shortestPathSet);
@@ -83,7 +87,9 @@ int* EvaluateShortDistance(int graph[][VERTEX], int startinglocation, int destin
     return shortestDistances;
 }
 
-void DisplayShortDistance(int shortestDestances[], int startingLocation, int destination){
+void DisplayShortDistance(int shortestDestances[], Routes *locations){
+    int startingLocation = locations->start;
+    int destination = locations->destination;
     printf("##############################\n");
     printf("Starting Location: %s \n", nodeNames[startingLocation]);
     printf("Destination: %s \n", nodeNames[destination]);
