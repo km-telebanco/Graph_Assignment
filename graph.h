@@ -58,9 +58,9 @@ int* EvaluateShortDistance(int graph[][VERTEX], Routes *route){
     int startinglocation = route->start;
     
     static int shortestDistances[VERTEX];
-    bool shortestPathSet[VERTEX];
+    bool shortestPathSet[VERTEX], isNotInfinite, isCurrDistShorter;
 
-    for (int i = 0; i < VERTEX; i++) { //initialize shortest distance and shortest paths
+    for (int i = 0; i < VERTEX; i++) { //initialize shortest distance and shortest paths / TBD - function
         shortestDistances[i] = INT_MAX;
         shortestPathSet[i] = false;
     }
@@ -68,18 +68,20 @@ int* EvaluateShortDistance(int graph[][VERTEX], Routes *route){
     shortestDistances[startinglocation] = 0; // if cebu == cebu = 0 distance
 
     for (int count = 0; count < VERTEX - 1; count++) {
-        int minDistanceVertex = FindMinDistanceVertex(shortestDistances, shortestPathSet);
-        shortestPathSet[minDistanceVertex] = true;
-
-        for (int v = 0; v < VERTEX; v++) {
+        int minDistVertex = FindMinDistanceVertex(shortestDistances, shortestPathSet);
+        shortestPathSet[minDistVertex] = true;
+        isNotInfinite = shortestDistances[minDistVertex] != INT_MAX;
+        
+        for (int v = 0; v < VERTEX; v++)
+        {
+            isCurrDistShorter = shortestDistances[minDistVertex] + graph[minDistVertex][v] < shortestDistances[v];
             if (
                 !shortestPathSet[v] &&
-                graph[minDistanceVertex][v] &&
-                shortestDistances[minDistanceVertex] != INT_MAX &&
-                shortestDistances[minDistanceVertex] + graph[minDistanceVertex][v] < shortestDistances[v]
-                ) 
+                graph[minDistVertex][v] &&
+                isNotInfinite &&
+                isCurrDistShorter)
             {
-                shortestDistances[v] = shortestDistances[minDistanceVertex] + graph[minDistanceVertex][v];
+                shortestDistances[v] = shortestDistances[minDistVertex] + graph[minDistVertex][v];
             }
         }
     }
