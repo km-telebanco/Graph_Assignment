@@ -6,18 +6,18 @@ int menuSelection;
 
 void DisplayMenu()
 {
-    printf("[1] Assign Names To Nodes\n");
+    printf("\n[1] Assign Names To Nodes\n");
     printf("[2] Starting Location\n");
     printf("[3] Destination\n");
     printf("[4] Shortest Distance\n");
-    printf("[5] Dispay Graph\n");
+    printf("[5] Display Graph\n");
     printf("[6] Exit\n");
 }
 
 int SelectMenu()
 {
     int choice;
-    printf("Choose Graph Selection: ");
+    printf("\nChoose Graph Selection: ");
     scanf("%d", &choice);
     return choice;
 }

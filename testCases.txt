@@ -1,0 +1,25 @@
+Graph Test Cases:
+
+1. Assign Names to each Destination
+Manila
+Davao
+Cebu
+Bohol
+Taguig
+
+Expectations:
+Shortest: Davao -> Cebu -> Taguig = 6
+Other Path: Davao -> Bohol-> Taguig = 8
+
+Shortest: Manila -> Davao -> Cebu -> Taguig = 10
+Other Path: Manila -> Davao-> Bohol -> Taguig = 13
+
+2. If same path for Start and Destination:
+Expectation:
+Results to Zero
+
+3. No Assigned Name to each Destination
+Expectations:
+Static Letters
+
+ 

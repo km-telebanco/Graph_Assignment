@@ -92,8 +92,10 @@ int* EvaluateShortDistance(int graph[][VERTEX], Routes *route){
 void DisplayShortDistance(int shortestDestances[], Routes *locations){
     int startingLocation = locations->start;
     int destination = locations->destination;
-    printf("##############################\n");
+    printf("# # # # # # # # # # # # # # # # # # # # # #\n\n");
     printf("Starting Location: %s \n", nodeNames[startingLocation]);
     printf("Destination: %s \n", nodeNames[destination]);
     printf("Shortest Distance: %d \n\n", shortestDestances[destination]);
+    printf("# # # # # # # # # # # # # # # # # # # # # #\n");
+
 }
